@@ -1,0 +1,29 @@
+replicaCount: 1
+image:
+  repository: harbor.nsx.techlab.netone.co.jp/library/gradio
+  tag: "2.2"
+  pullPolicy: Always
+env:
+  api_key: ""
+  model_role: "あなたは誠実で優秀な日本人のエージェントです。"
+  model_name: ""
+imagePullSecrets: []
+service:
+  type: ClusterIP
+  port: 8001
+phoenix:
+  endpoint: "http://phoenix.mnara-ds.svc.cluster.local:6006/v1/traces"
+  port: 6006
+route:
+  enabled: true
+  tls:
+    enabled: true
+    termination: edge
+    key: ""
+    destinationCACertificate: ""
+    caCertificate: ""
+    certificate: ""
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}

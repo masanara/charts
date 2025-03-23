@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gradio.fullname" . }}
+  labels:
+    {{- include "gradio.labels" . | nindent 4 }}
+spec:
+  {{- if .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount }}
+  {{- else }}
+  replicas: 1
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "gradio.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "gradio.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "gradio.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: MODEL_URL
+              value: "https://{{ .Values.env.model_name }}.{{ .Release.Namespace }}.svc.cluster.local"
+            - name: MODEL_NAME
+              value: "{{ .Values.env.model_name }}"
+            - name: MODEL_ROLE
+              {{- if .Values.env.model_role }}
+              value: "{{ .Values.env.model_role }}"
+              {{- else }}
+              value: "あなたは誠実で優秀な日本人のエージェントです。"
+              {{- end }}
+            {{- if .Values.phoenix.endpoint }}
+            - name: PHOENIX_COLLECTOR_ENDPOINT
+              value: {{ .Values.phoenix.endpoint }}
+            - name: PHOENIX_PORT
+              value: {{ .Values.phoenix.port | quote }}
+            {{- end -}}
+            {{- if .Values.env.api_key }}
+            - name: API_KEY
+              value: "{{ .Values.env.api_key }}"
+            {{- end }}
+      {{- with .Values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

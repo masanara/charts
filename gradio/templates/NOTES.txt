@@ -1,0 +1,9 @@
+Application URL 
+{{- $route := (lookup "route.openshift.io/v1" "Route" .Release.Namespace .Release.Name) }}
+{{- if $route }}
+Your application is accessible at: http{{- if $.Values.route.tls.enabled }}s{{ end }}://{{ $route.spec.host }}
+
+{{- else }}
+Route resource is not yet available. Please check later using: oc get route -n {{ .Release.Namespace }}
+
+{{- end }}

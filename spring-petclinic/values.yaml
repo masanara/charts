@@ -1,0 +1,35 @@
+replicaCount: 1
+image:
+  repository: masanara/spring-petclinic
+  tag: "3.4.0-SNAPSHOT"
+  pullPolicy: Always
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+
+securityContext: {}
+service:
+  type: ClusterIP
+  port: 8080
+
+route:
+  enabled: true
+  tls:
+    enabled: true
+    termination: edge
+    key: ""
+    destinationCACertificate: ""
+    caCertificate: ""
+    certificate: ""
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+resources: {}
+volumes: []
+volumeMounts: []
+nodeSelector: {}
+tolerations: []
+affinity: {}

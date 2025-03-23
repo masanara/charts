@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "title": "Replica Count",
+      "description": "Number of replicas for the deployment.",
+      "default": 1,
+      "minimum": 1
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "title": "Container Image Repository",
+          "description": "The repository for the container image.",
+          "default": "harbor.nsx.techlab.netone.co.jp/library/gradio"
+        },
+        "tag": {
+          "type": "string",
+          "title": "Image Tag",
+          "description": "Tag for the container image.",
+          "default": "2.2"
+        },
+        "pullpolicy": {
+          "type": "string",
+          "title": "Image Pull Policy",
+          "description": "Image pull policy for the container.",
+          "enum": ["Always", "IfNotPresent", "Never"],
+          "default": "Always"
+        }
+      },
+      "required": ["repository", "tag"]
+    },
+    "env": {
+      "type":"object",
+      "properties": {
+        "api_key": {
+          "type": "string",
+          "title": "API Key",
+          "description": "API Key for model serving"
+        },
+        "model_role": {
+          "type": "string",
+          "title": "Model Role",
+          "description": "How act as model",
+          "default": "あなたは誠実で優秀な日本人のエンジニアです。"
+        },
+        "model_name": {
+          "type": "string",
+          "title": "Model Name",
+          "description": "Name of model"
+        }
+      },
+      "required": ["model_role", "model_name"]
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Service Type",
+          "description": "Type of Kubernetes Service.",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer"],
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "title": "Service Port",
+          "description": "Port exposed by the service.",
+          "default": 8001
+        }
+      },
+      "required": ["type", "port"]
+    },
+		"phoenix": {
+      "type": "object",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "title": "Phoenix Endpoint",
+          "description": "Endpoint for Phoenix service.",
+          "default": "http://phoenix.mnara-ds.svc.cluster.local:6006/v1/traces"
+        },
+        "port": {
+          "type": "integer",
+          "title": "Phoenix Port",
+          "description": "Port for Phoenix service.",
+          "default": 6006
+        },
+        "additionalProperties": false
+      }
+		},
+    "route": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "Enable Route",
+          "description": "Whether to enable an OpenShift Route for the service.",
+          "default": true
+        },
+        "tls": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable TLS",
+              "description": "Secure route with TLS.",
+              "default": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
