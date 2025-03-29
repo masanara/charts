@@ -1,17 +1,22 @@
 replicaCount: 1
 image:
-  repository: harbor.nsx.techlab.netone.co.jp/library/gradio
-  tag: "2.2"
+  repository: harbor.nsx.techlab.netone.co.jp/library/rag-gradio
+  tag: "1.5"
   pullPolicy: Always
 env:
   api_key: ""
-  model_role: "あなたは誠実で優秀な日本人のエージェントです。"
-  model_url: ""
-  model_name: ""
+  model_url: "https://phi4.demo.svc.cluster.local/v1/"
+  model_name: "phi4"
+  milvus_host: "milvus.milvus.svc.cluster.local"
+  milvus_port: "19530"
+  milvus_user: "your_milvus_username"
+  milvus_password: "your_milvus_password"
+  default_collection: "rhoai_embeddings"
+  embedding_model: "intfloat/multilingual-e5-small"
 imagePullSecrets: []
 service:
   type: ClusterIP
-  port: 8001
+  port: 7860
 phoenix:
   endpoint: "http://phoenix.phoenix.svc.cluster.local:6006/v1/traces"
   port: 6006

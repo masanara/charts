@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "rag.fullname" . }}-prompt
+  labels:
+    {{- include "rag.labels" . | nindent 4 }}
+data:
+  prompt.txt: |
+    """
+    あなたは親切で礼儀正しく、正直なアシスタントで、質問に答えます。回答する必要のある質問と、情報を提供するためのコンテキストが与えられます。
+    このコンテキストに基づいて、できる限り質問に答える必要があります。回答内に与えられたコンテキストを繰り返す必要はありません。本質的に肯定的なものにしてください。
+    質問が 意味をなさない、または事実に一貫性がない場合は、正しくない回答をするのではなく、その理由を説明してください。質問の答えがわからない場合は、誤った情報を共有しないでください。
+    
+    コンテキスト: {context}
+    
+    質問: {question}
+    
+    回答:
+    """
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "rag.fullname" . }}-collections
+  labels:
+    {{- include "rag.labels" . | nindent 4 }}
+data:
+  {{- if .Values.collections }}
+  collections.json: |-
+    {{- include "rag.collections" }}
+  {{- else }}
+  collections.json: |-
+    [
+      {"name":"rhoai_embeddings","display_name":"OpenShift AI"},
+      {"name":"netone_embeddings","display_name":"netone"}
+    ]
+  {{- end }}

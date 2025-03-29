@@ -61,7 +61,7 @@ spec:
           {{- end }}
           env:
             - name: MODEL_URL
-              value: "https://{{ .Values.env.model_name }}.{{ .Release.Namespace }}.svc.cluster.local"
+              value: "{{ .Values.env.model_url }}"
             - name: MODEL_NAME
               value: "{{ .Values.env.model_name }}"
             - name: MODEL_ROLE

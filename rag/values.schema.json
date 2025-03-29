@@ -17,26 +17,32 @@
           "title": "API Key",
           "description": "API Key for model serving"
         },
-        "model_role": {
-          "type": "string",
-          "title": "Model Role",
-          "description": "How act as model",
-          "default": "あなたは誠実で優秀な日本人のエンジニアです。"
-        },
         "model_name": {
           "type": "string",
           "title": "Model Name",
           "description": "Name of model",
-          "default": "llama3.2"
+          "default": "phi4"
+        },
+        "embedding_model": {
+          "type": "string",
+          "title": "Embedding Model Name",
+          "description": "Name of Embedding model",
+          "default": "intfloat/multilingual-e5-small"
         },
         "model_url": {
           "type": "string",
           "title": "Model URL",
           "description": "URL of Serving Endpoint",
-          "default": "http://localhost"
+          "default": "http://phi4.demo.svc.cluster.local/v1"
+        },
+        "milvus_host": {
+          "type": "string",
+          "title": "Milvus URL",
+          "description": "URL of Milvus",
+          "default": "http://milvus.milvus.svc.cluster.local"
         }
       },
-      "required": ["model_role", "model_name"]
+      "required": ["model_name","embedding_model","model_url","milvus_host"]
     },
     "service": {
       "type": "object",
@@ -64,13 +70,13 @@
           "type": "string",
           "title": "Container Image Repository",
           "description": "The repository for the container image.",
-          "default": "harbor.nsx.techlab.netone.co.jp/library/gradio"
+          "default": "harbor.nsx.techlab.netone.co.jp/library/rag-gradio"
         },
         "tag": {
           "type": "string",
           "title": "Image Tag",
           "description": "Tag for the container image.",
-          "default": "2.2"
+          "default": "1.5"
         },
         "pullpolicy": {
           "type": "string",
@@ -89,7 +95,7 @@
           "type": "string",
           "title": "Phoenix Endpoint",
           "description": "Endpoint for Phoenix service.",
-          "default": "http://phoenix.mnara-ds.svc.cluster.local:6006/v1/traces"
+          "default": "http://phoenix.phoenix.svc.cluster.local:6006/v1/traces"
         },
         "port": {
           "type": "integer",
