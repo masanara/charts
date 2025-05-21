@@ -76,7 +76,7 @@
           "type": "string",
           "title": "Image Tag",
           "description": "Tag for the container image.",
-          "default": "1.5"
+          "default": "1.6"
         },
         "pullpolicy": {
           "type": "string",

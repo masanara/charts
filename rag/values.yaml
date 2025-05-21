@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: harbor.nsx.techlab.netone.co.jp/library/rag-gradio
-  tag: "1.5"
+  tag: "1.6"
   pullPolicy: Always
 env:
   api_key: ""
