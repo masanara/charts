@@ -1,0 +1,27 @@
+{{- if .Values.route.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "open-webui.name" . }}
+  namespace: {{ include "open-webui.namespace" . }}
+  labels:
+    {{- include "open-webui.labels" . | nindent 4 }}
+    {{- with .Values.route.extraLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  to:
+    kind: Service
+    name: {{ include "open-webui.name" . }}
+  port:
+    targetPort: http
+  {{- if .Values.route.tls }}
+  tls:
+    termination: {{ default "edge" .Values.route.termination }}
+    insecureEdgeTerminationPolicy: None
+  {{- end }}
+{{- end }}

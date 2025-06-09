@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "title": "Replica Count",
+      "description": "Number of replicas for the deployment.",
+      "default": 1,
+      "minimum": 1
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Service Type",
+          "description": "Type of Kubernetes Service.",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer"],
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "title": "Service Port",
+          "description": "Port exposed by the service.",
+          "default": 8001
+        }
+      },
+      "required": ["type", "port"]
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "title": "Container Image Repository",
+          "description": "The repository for the container image.",
+          "default": "harbor.nsx.techlab.netone.co.jp/library/rag-gradio"
+        },
+        "tag": {
+          "type": "string",
+          "title": "Image Tag",
+          "description": "Tag for the container image.",
+          "default": "1.6"
+        },
+        "pullpolicy": {
+          "type": "string",
+          "title": "Image Pull Policy",
+          "description": "Image pull policy for the container.",
+          "enum": ["Always", "IfNotPresent", "Never"],
+          "default": "Always"
+        }
+      },
+      "required": ["repository", "tag"]
+    },
+    "route": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "title": "Enable Route",
+          "description": "Whether to enable an OpenShift Route for the service.",
+          "default": true
+        },
+        "tls": {
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "title": "Enable TLS",
+              "description": "Secure route with TLS.",
+              "default": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
