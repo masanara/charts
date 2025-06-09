@@ -6,8 +6,8 @@ image:
 env:
   api_key: ""
   model_role: "あなたは誠実で優秀な日本人のエージェントです。"
-  model_url: ""
-  model_name: ""
+  model_url: "https://phi4.demo.svc.cluster.local"
+  model_name: "phi4"
 imagePullSecrets: []
 service:
   type: ClusterIP
