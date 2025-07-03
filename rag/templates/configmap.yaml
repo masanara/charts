@@ -31,7 +31,7 @@ data:
   {{- else }}
   collections.json: |-
     [
-      {"name":"rhoai_embeddings","display_name":"OpenShift AI"},
-      {"name":"netone_embeddings","display_name":"netone"}
+      {"name":"nosblog_embeddings","display_name":"NetOne Blog"},
+      {"name":"rhoai_embeddings","display_name":"OpenShift AI"}
     ]
   {{- end }}

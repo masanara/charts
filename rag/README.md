@@ -34,7 +34,7 @@ Gradio UI deployment for LLM testing.
 - name: MILVUS_COLLECTIONS_FILE
   value: /opt/app-root/src/collections.json
 - name: DEFAULT_COLLECTION
-  value: rhoai_embeddings
+  value: nosblog_embeddings
 - name: PROMPT_FILE
   value: prompt.txt
 - name: MAX_RETRIEVED_DOCS
