@@ -29,6 +29,12 @@
           "description": "Name of Embedding model",
           "default": "intfloat/multilingual-e5-small"
         },
+        "temperature": {
+          "type": "integer",
+          "title": "LLM Temperature",
+          "description": "LLM Tempature for request",
+          "default": 1
+        },
         "model_url": {
           "type": "string",
           "title": "Model URL",

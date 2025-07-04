@@ -13,6 +13,7 @@ env:
   milvus_password: "your_milvus_password"
   default_collection: "nosblog_embeddings"
   embedding_model: "intfloat/multilingual-e5-small"
+  temperature: "1"
 imagePullSecrets: []
 service:
   type: ClusterIP
