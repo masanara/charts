@@ -30,10 +30,10 @@
           "default": "intfloat/multilingual-e5-small"
         },
         "temperature": {
-          "type": "integer",
+          "type": "string",
           "title": "LLM Temperature",
           "description": "LLM Tempature for request",
-          "default": 1
+          "default": "1"
         },
         "model_url": {
           "type": "string",
