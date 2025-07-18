@@ -39,7 +39,7 @@
           "type": "string",
           "title": "Model URL",
           "description": "URL of Serving Endpoint",
-          "default": "http://phi4.demo.svc.cluster.local/v1"
+          "default": "http://phi4.demo.svc.cluster.local"
         },
         "milvus_host": {
           "type": "string",
@@ -82,7 +82,7 @@
           "type": "string",
           "title": "Image Tag",
           "description": "Tag for the container image.",
-          "default": "1.6"
+          "default": "1.7"
         },
         "pullpolicy": {
           "type": "string",

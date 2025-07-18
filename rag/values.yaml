@@ -1,11 +1,11 @@
 replicaCount: 1
 image:
   repository: harbor.nsx.techlab.netone.co.jp/library/rag-gradio
-  tag: "1.6"
+  tag: "1.7"
   pullPolicy: Always
 env:
   api_key: ""
-  model_url: "https://phi4.demo.svc.cluster.local/v1/"
+  model_url: "https://phi4.demo.svc.cluster.local"
   model_name: "phi4"
   milvus_host: "milvus.milvus.svc.cluster.local"
   milvus_port: "19530"
