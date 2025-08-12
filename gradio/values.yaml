@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: harbor.nsx.techlab.netone.co.jp/library/gradio
-  tag: "2.2"
+  tag: "2.3"
   pullPolicy: Always
 env:
   api_key: ""

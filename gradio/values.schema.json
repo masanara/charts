@@ -70,7 +70,7 @@
           "type": "string",
           "title": "Image Tag",
           "description": "Tag for the container image.",
-          "default": "2.2"
+          "default": "2.3"
         },
         "pullpolicy": {
           "type": "string",
