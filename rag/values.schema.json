@@ -21,13 +21,13 @@
           "type": "string",
           "title": "Model Name",
           "description": "Name of model",
-          "default": "phi4"
+          "default": "elyza"
         },
         "embedding_model": {
           "type": "string",
           "title": "Embedding Model Name",
           "description": "Name of Embedding model",
-          "default": "intfloat/multilingual-e5-small"
+          "default": "intfloat/multilingual-e5-large"
         },
         "temperature": {
           "type": "string",
@@ -39,7 +39,7 @@
           "type": "string",
           "title": "Model URL",
           "description": "URL of Serving Endpoint",
-          "default": "http://phi4.demo.svc.cluster.local"
+          "default": "http://elyza.demo.svc.cluster.local"
         },
         "milvus_host": {
           "type": "string",
@@ -82,7 +82,7 @@
           "type": "string",
           "title": "Image Tag",
           "description": "Tag for the container image.",
-          "default": "1.7"
+          "default": "2.0"
         },
         "pullpolicy": {
           "type": "string",
