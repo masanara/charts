@@ -32,7 +32,7 @@ data:
   collections.json: |-
     [
       {"name":"nosblog_embeddings","display_name":"NetOne Blog"},
-      {"name":"dtf2025_embeddings","display_name":"OpenShift AI"}
+      {"name":"dtf2025_embeddings","display_name":"Dell Technologies Forum"},
       {"name":"rhoai_embeddings","display_name":"OpenShift AI"}
     ]
   {{- end }}
