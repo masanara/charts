@@ -5,8 +5,8 @@ image:
   pullPolicy: Always
 env:
   api_key: ""
-  model_url: "https://elyza.demo.svc.cluster.local"
-  model_name: "elyza"
+  model_url: "http://gemma3-predictor.demo.svc.cluster.local:8080"
+  model_name: "gemma3"
   milvus_host: "milvus.milvus.svc.cluster.local"
   milvus_port: "19530"
   milvus_user: "your_milvus_username"

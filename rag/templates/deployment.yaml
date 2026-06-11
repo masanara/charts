@@ -46,10 +46,6 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
           readinessProbe:
             httpGet:
               path: /
@@ -63,6 +59,8 @@ spec:
               mountPath: /opt/app-root/src/prompt.txt
               subPath: prompt.txt
           env:
+            - name: HF_HOME
+              value: /tmp
             - name: APP_TITLE
               value: Chat with your Knowledge Base
             - name: SHOW_TITLE_IMAGE

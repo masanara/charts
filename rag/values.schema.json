@@ -21,7 +21,7 @@
           "type": "string",
           "title": "Model Name",
           "description": "Name of model",
-          "default": "elyza"
+          "default": "gemma3"
         },
         "embedding_model": {
           "type": "string",
@@ -39,7 +39,7 @@
           "type": "string",
           "title": "Model URL",
           "description": "URL of Serving Endpoint",
-          "default": "http://elyza.demo.svc.cluster.local"
+          "default": "http://gemma3-predictor.demo.svc.cluster.local:8080"
         },
         "milvus_host": {
           "type": "string",
