@@ -1,12 +1,12 @@
 replicaCount: 1
 image:
   repository: harbor.nsx.techlab.netone.co.jp/library/rag-gradio
-  tag: "2.0"
+  tag: "4.0"
   pullPolicy: Always
 env:
   api_key: ""
-  model_url: "http://gemma3-predictor.demo.svc.cluster.local:8080"
-  model_name: "gemma3"
+  model_url: "https://inference.apps.sno.techlab.netone.co.jp/demo/gpt-oss-20b"
+  model_name: "gpt-oss-20b"
   milvus_host: "milvus.milvus.svc.cluster.local"
   milvus_port: "19530"
   milvus_user: "your_milvus_username"
